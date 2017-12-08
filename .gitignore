@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 
 .idea/*
 *.mp4
 docker/.DS_Store
 *.zip
 .DS_Store
+=======
+.idea/*
+*.pyc
+>>>>>>> 086792a8186e09db2234ab8b2dd3f06b11c37242
