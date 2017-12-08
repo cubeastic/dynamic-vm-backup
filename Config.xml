@@ -1,0 +1,18 @@
+<config>
+    <machines>
+        <!-- example: name, id (optional) -->
+        <!-- <vm name="slackware_vm" id="f65d5b26-6491-4523-8c06-970cbe6844d5"/> -->
+        <vm name="test1" id="f65d5b26-6491-4523-8c06-970cbe6844d5"/>
+        <vm name="test2"/>
+        <vm name="test3"/>
+        <vm name="test4"/>
+        <vm name="test5"/>
+    </machines>
+    <local>
+        <vbox clone_path=""/>
+        <backup path="/tmp"/>
+    </local>
+    <remote>
+        <machine ip="127.0.0.1" user="root" pass="123456" path="/usr/local/vm_backups"/>
+    </remote>
+</config>
