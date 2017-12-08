@@ -1,6 +1,6 @@
 from ftplib import FTP, error_perm
 from socket import timeout
-from os import listdir, chdir
+from os import listdir, chdir, sep, getcwd
 import os
 
 class FtpManager:
@@ -9,9 +9,8 @@ class FtpManager:
         self.address = address
         self.user = user
         self.password = password
-        self.local_dir = ""
         self.remote_dir = remote_backup_dir
-        self.connection = ""
+        self.connection = None
 
     def connect(self):
         try:
@@ -24,23 +23,21 @@ class FtpManager:
         except error_perm:
             print("access denied, check credentials")
             exit(code=0)
-        return self.connection
 
     def upload(self, path):
-        self.local_dir = path
-        files = listdir(self.local_dir)
-        chdir(self.local_dir)
+        files = listdir(path)
+        chdir(path)
         for file in files:
-            if os.path.isfile(path + r"\{0}".format(file)):
+            print(getcwd() + sep + file)
+            if os.path.isfile(getcwd() + sep + file):
                 fh = open(file, 'rb')
                 self.connection.storbinary('STOR %s' % file, fh)
                 fh.close()
-            elif os.path.isdir(path + r'\{}'.format(file)):
+            elif os.path.isdir(getcwd() + sep + file):
                 self.connection.mkd(file)
                 self.connection.cwd(file)
-                self.upload(path + r'\{}'.format(file))
-        #self.connection.cwd('..')
-        chdir('..')
+                self.upload(getcwd() + sep + file)
 
 f = FtpManager("200.10.1.3", "dennis", "1q2w3e4R", None)
+f.connect()
 f.upload("docker")
