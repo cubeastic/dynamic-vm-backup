@@ -1,1 +1,28 @@
 # dynamic-vm-backup
+
+Hi Mihail,
+
+As requested we built the app you've requested that does the following:
+  1. Everyday at 1AM, it stops the virtual machines you requested
+  2. Clones the virtual machine you requested and saves them into the backup folder with the format Date_VmName
+  3. Starts the virtual machines
+  4. Copies todays and yesterdays backups to the FTP
+  5. Deletes backups older than one day from the local folder
+
+To make your app more dynamic, we prepared a Config.xml in which you enter all the names and addresses:
+  1. Please add all the virtual machines you want in:
+     <machines>
+        <vm name="enter the vm name here"/>
+        <vm name="enter the vm name here"/>
+        <vm name="enter the vm name here"/>
+        <vm name="enter the vm name here"/>
+        <vm name="enter the vm name here"/>
+    </machines>
+  2. Please add the local backup folder you want all the virtual machines to be saved:
+    <local>
+        <backup path="/tmp/vm_backups"/>
+    </local>
+  3. Please add your FTP server details in(ip address, user, password, remote path in ftp):
+     <remote>
+        <machine ip="127.0.0.1" user="root" pass="123456" path="/usr/local/vm_backups"/>
+    </remote>
