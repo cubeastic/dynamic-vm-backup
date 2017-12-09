@@ -11,7 +11,7 @@ As you probably know, you need to put it inside your crontab(as the running user
 
 0 1 * * * /usr/local/dynvmbkp/Main.py 
 
-To make your app more dynamic, we prepared a Config.xml in which you enter all the names and addresses:
+To make your app more dynamic, we prepared a mandatory Config.xml in which you enter all the names and addresses:
   1. Please add all the virtual machines you want in:
      <machines>
         <vm name="enter the vm name here"/>
